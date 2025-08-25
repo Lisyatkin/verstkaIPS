@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <title>Профиль</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+
+    <body class="body">
+        
+    <header class="page-header">
+        <div class="page-header__container">
+            <a href="index.html" class="page-header__logo">
+                <img src="assets/images/logo.svg" alt="Логотип" class="page-header__logo-icon">
+            </a>
+
+            <nav class="page-header__nav">
+                <a href="/catalog.html" class="page-header__nav-link">Каталог</a>
+                <a href="/about.html" class="page-header__nav-link">О нас</a>
+                <a href="/bakeries.html" class="page-header__nav-link">Пекарни</a>
+            </nav>
+
+            <div class="page-header__nav-icons">
+                <a href="#" class="page-header__nav-link_image help"></a>
+                <a href="/profile.html" class="page-header__nav-link_image profile"></a>
+                <a href="/cart.html" class="page-header__nav-link_image cart"></a>
+            </div>
+        </div>
+    </header>
+
+        <main class="main">
+            <div class="profile_image">
+                <h1>Профиль</h1>
+                <img src="assets/images/fox_profile.svg" class="profile_photo"/>
+            </div>
+            
+            <div class="info">
+                <div class="left-info">
+                    <h2>Мои данные</h2>
+                    <div class="profile-data-field">
+                        <span class="profile-data-value" id="profile-name">Не указано</span>
+                    </div>
+
+<div class="profile-data-field">
+    <span class="profile-data-value" id="profile-phone">Не указан</span>
+    <h3 onclick="openPopup('phone')"> Изменить номер телефона</h3>
+</div>
+<div class="profile-data-field">
+    <span class="profile-data-value" id="profile-password">Не указан</span>
+    <h3 onclick="openPopup('password')">Изменить пароль</h3>
+</div>
+                </div>
+
+                <div class="right-info">
+                    <div class="right-info-first">
+                        <h2>Мои адреса</h2>
+                        <h3>В пределах г. Томск</h3>
+                    </div>
+
+                    <div class="adress-info">
+                        <div class="adress-stroke">
+                            <h2> Пр-т Ленина, д.40</h2>
+                        </div>
+                    </div>
+
+                    <div class="adress-info peak">
+                        <div class="adress-stroke peak">
+                            <h3> Добавить адрес<span style="color: #FFEBDC">_______________________________________</span></h3>
+                        </div>
+                    </div>
+                    
+                    <div class="bonus-profile">
+                        <h2>Бонусы</h2>
+                        <h3>Количество бонусов: <span class="current-bonus-count-profile">0</span></h3>
+                        <h3> </h3>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="page-footer">
+            <div class="page-footer-content">
+                <div class="page-footer-leftblock">
+                    <h1> ПекарНя </h1>
+                    <div class="footer-colums">
+                        <div class="footer-links-container">
+                            <a href="#" class="page-footer__nav-link">О нас</a>
+                            <a href="#" class="page-footer__nav-link"> Каталог </a>
+                            <a href="#" class="page-footer__nav-link"> Контакты </a>
+                        </div>
+
+                        <div class="footer-links-container">
+                            <a href="#" class="page-footer__nav-link"> Политика конфиденциальности </a>
+                            <a href="#" class="page-footer__nav-link"> Правила пользования сайтом </a>
+                            <a href="#" class="page-footer__nav-link"> Пользовательское соглашение </a>
+                            <a href="#" class="page-footer__nav-link"> Версия администратора </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-copyright">
+                        <a href="#" class="page-footer__nav-link"> Все права защищены | ©Copyright 2025 </a>
+                    </div>
+                </div>   
+
+                <div class="page-footer-rightblock">
+                    <div class="social-links">
+                        <h1>Социальные сети </h1>
+                        <a href="#" class="social-link">
+                            <img src="assets/images/VK_logo.svg" alt="Логотип" class="page-footer__logo_sociallink">
+                            ВКонтакте
+                        </a>
+                        <a href="#" class="social-link">   
+                            <img src="assets/images/TELEGRAM_logo.svg" class="page-footer__logo_sociallink Telegram"> 
+                            Telegram
+                        </a>
+                        <a href="#" class="social-link"> 
+                            <img src="assets/images/WHATSAPP_logo.svg" class="page-footer__logo_sociallink WhatsAPP">
+                            WhatsApp
+                        </a>
+                    </div>   
+                </div>
+            
+                <div class="page-footer-logo">
+                    <img src="assets/images/fox_logo_footer.svg" alt="Логотип" class="page-footer__logo-icon">
+                </div>
+            </div>
+        </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Попап изменения телефона -->
+<div id="phonePopupOverlay" class="popup-overlay popup-overlay--hidden">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup('phonePopup')">×</button>
+        <h2>Изменить номер телефона</h2>
+        
+        <div class="popup-form-group">
+            <label>Старый номер</label>
+            <input type="tel" id="old-phone-input" readonly>
+        </div>
+        
+        <div class="popup-form-group">
+            <label>Новый номер</label>
+            <input type="tel" id="new-phone-input" placeholder="+7 (999) 999-99-99">
+        </div>
+        
+        <button class="popup-submit-btn" onclick="updatePhone()">Изменить</button>
+    </div>
+</div>
+
+<!-- Попап изменения пароля -->
+<div id="passwordPopupOverlay" class="popup-overlay popup-overlay--hidden">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup('passwordPopup')">×</button>
+        <h2>Изменить пароль</h2>
+        
+        <!-- Исправлено имя класса на popup-form-container -->
+        <div class="popup-form-container">
+            <div class="popup-form-group">
+                <label>Старый пароль</label>
+                <input type="password" id="old-password-input" placeholder="Пароль">
+            </div>
+            
+            <div class="popup-form-group">
+                <label>Новый пароль</label>
+                <input type="password" id="new-password-input" placeholder="Пароль">
+            </div>
+            
+            <div class="popup-form-group">
+                <label>Повторите пароль</label>
+                <input type="password" id="repeat-password-input" placeholder="Пароль">
+            </div>
+        </div>
+        
+        <!-- Кнопка вынесена за пределы контейнера с формами -->
+        <button class="popup-submit-btn" onclick="updatePassword()">Изменить</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="contact-popup contact-popup--hidden">
+            <div class="contact" style="position: relative;">
+                <h1>Номер телефона тех. поддержки</h1>
+                <h2>+7 (963) 579-74-79</h2>
+            </div>
+        </div>
+
+        <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
+
+<!-- <script src="profileAuth.js"></script> -->
+<script src="auth.js"></script>
+<script src="script.js"></script>
+<script src="addAddressPopup.js"></script>
+<script src="cart.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const cart = Cart.getInstance().init();
+                cart.updateProfileBonuses();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <title> О нас </title>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+
+    <body class = "body">
+        
+    <header class="page-header">
+        header
+    </header>
+
+        <main class = "main">
+                <div class="newpassword">
+                    <h1> Страница сброса пароля</h1>
+                    <h2> Забыли пароль? </h2>
+                    <h3> Укажите свой номер телефона, под которым<br>
+                         вы зарегистрированы на сайте и на него<br>
+                         будет отправлена информация о<br>
+                         восстановлении пароля</h3>
+                    <input type="tel" class="strokavvoda" id="inputnewpassword" placeholder="+7 (999) 999-99-99">
+                    <button> Отправить </button>
+                </div>
+
+
+                <div class="register">
+                    <img src="./assets/images/popaps/register_fox.svg">
+                    <div class="login-right">
+                        <h1> Регистрация </h1>
+                        <input type="text" id="register-name" placeholder="Имя">
+                        <input type="tel" id="register-phone" placeholder="+7 (999) 999-99-99">
+
+                        <input type="password" id="register-password" placeholder="Пароль">
+                        <input type="password" id="register-repeat-password" placeholder="Повторите пароль">
+
+                        <div class="checkboxs-container">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="checkboxregister">
+                                <label for="checkbox"> Я Согласен с обработкой своих персональных данных в<br>
+                                                соответствии с Политикой обработки персональных<br>
+                                                данных и Публичной офертой </label>
+
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="checkboxregister">
+                                <label for="checkbox"> Я согласен получать рекламную рассылку и<br>
+                                    ознакомился с Согласием на получение рекламной<br>
+                                    рассылки </label>
+                            </div>
+                        </div>
+
+
+                         <button onclick="registerUser()">Зарегистрироваться</button>
+                    </div>
+
+                </div>
+
+
+                <div class="login">
+                    
+                    <img src="./assets/images/popaps/autorize_fox.svg"/>
+
+                    <div class="login-right">
+                        <h1> Авторизация </h1>
+                        <input type="tel" id="login-phone" placeholder="+7 (999) 999-99-99">
+                        <input type="password" id="login-password" placeholder="Пароль">
+
+                        <h5> Забыли пароль? </h5>
+
+                    <button onclick="loginUser()">Войти</button>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="newphone">
+                    <h1> Изменить номер телефона</h1>
+
+                    <h2>Старый номер телефона</h2>
+                    <input type="tel" id="inputnewtel" placeholder="+7 (999) 999-99-99">
+
+                    <h2>Новый номер телефона</h2>
+                    <input type="tel" id="inputnewtel" placeholder="+7 (999) 999-99-99">
+
+
+                    <button> Изменить </button>
+
+                </div>
+
+                <div class="newnewpassword">
+                    <h1> Изменить пароль </h1>
+                    
+                    <h2> Старый пароль </h2>
+                    <input type="password" id="inputnewpas" placeholder="Пароль">
+
+                    <h2> Новый пароль </h2>
+                    <input type="password" id="inputnewpas" placeholder="Пароль">
+                
+                    <h2> Повторите новый пароль </h2>
+                    <input type="password" id="inputnewpas" placeholder="Пароль">
+
+                    <button> Изменить </button>
+                </div>
+
+
+                <div class="contact">
+                    <h1> Номер телефона тех. поддержки </h2>
+                    <h2> +7 (963) 579-74-79 </h2>
+                </div>
+
+                <div class="newaddress">
+                    <h1> Добавить адрес </h1>
+                    <h2> Новый адрес</h2>
+                    <input type="text" id="inputnewaddres" placeholder="Адрес">
+                    <button> Добавить </button>
+                </div>
+
+
+                <div class="dontautorize">
+                    <h1> Вы на авторизованы </h1>
+
+                    <h2> Для большего функционала<br>
+                         произведите авторизацию</h2>
+
+                    <button> Войти </button>
+                    <p> Нет аккаунта? </p>
+                </div>
+
+
+        <div class="buy-basket">
+            <h1>Ваш заказ</h1>
+            <div class="basket-items-container">
+                <!-- Сюда будут добавляться товары -->
+            </div>
+    <p>
+        Бонусы: 
+        <input type="number" class="bonus-to-use" value="0" min="0" style="width:70px;">
+        / <span class="current-bonus-count">0</span>
+    </p>
+    <div class="basket-summary">
+            <p>Бонусы начислятся: <span class="bonus-to-add">0</span></p>
+            <div class="total-price">Итого: 0 ₽</div>
+            </div>
+            <button class="pay-button">Оплатить</button>
+        </div>
+        
+        </main>
+            <footer class="page-footer">
+                footer
+            </footer>
+        
+    </body>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</html>
+
+
+
+

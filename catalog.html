@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ПекарНЯ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+    <header class="page-header">
+        <div class="page-header__container">
+            <a href="index.html" class="page-header__logo">
+                <img src="assets/images/logo.svg" alt="Логотип" class="page-header__logo-icon">
+            </a>
+
+            <nav class="page-header__nav">
+                <a href="#" class="page-header__nav-link aboutpage"> Каталог </a>
+                <a href="/about.html" class="page-header__nav-link">О нас</a>
+                <a href="/bakeries.html" class="page-header__nav-link">Пекарни</a>
+            </nav>
+
+            <div class="page-header__nav-icons">
+                <a href="#" class="page-header__nav-link_image help"></a>
+                <a href="/profile.html" class="page-header__nav-link_image profile"></a>
+                <a href="/cart.html" class="page-header__nav-link_image cart"></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="first-photo-catalog">
+            
+            <div class="background-photo-catalog">
+                <img src="./assets/images/catalog-first-photo.svg"/>
+                <h1> Каталог </h1>
+                <h2>Здесь вы можете посмотреть и выбрать<br>
+                     вкуснейшую и свежую выпечку</h2>
+            </div>
+        </div>
+            <div class="catalog-all-categories">
+
+                <a href="catalog.html" class="category now">
+                    <h3>Всё</h3>
+                </a>
+
+                <a href="cakes.html" class="category">
+                    <h3>Пирожные</h3>
+                </a>
+
+                <a href="cupcakes.html" class="category">
+                    <h3>Кексы</h3>
+                </a>
+
+                <a href="donuts.html" class="category">
+                    <h3>Пончики</h3>
+                </a>
+
+                <a href="croissants.html" class="category">
+                    <h3>Круассаны</h3>
+                </a>
+
+                <a href="littlepies.html" class="category">
+                    <h3>Пирожки</h3>
+                </a>
+
+                <a href="breads.html" class="category">
+                    <h3>Хлеба</h3>
+                </a>
+
+                <a href="bagets.html" class="category">
+                    <h3>Багеты</h3>
+                </a>
+
+                <a href="pies.html" class="category">
+                    <h3>Пироги</h3>
+                </a>
+
+            </div>
+        
+
+        <div class="grid-of-cards"> 
+
+
+            <!--- первая четверка -->
+            <div class="card-product" data-product-id="ekler">
+                <img src="./assets/images/grid_Of_cards/ekler.svg"/>
+                <h3> Эклер</h3>
+                <h1> 200₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="browni">
+                <img src="./assets/images/grid_Of_cards/browni.svg"/>
+                <h3> Брауни </h3>
+                <h1> 350₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="tiramisu">
+                <img src="./assets/images/grid_Of_cards/tiramisu.svg"/>
+                <h3> Тирамису </h3>
+                <h1> 550₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="pavlov">
+                <img src="./assets/images/grid_Of_cards/pavlov.svg"/>
+                <h3> Десерт Павлова</h3>
+                <h1> 750₽</h1>
+            </div>
+
+
+            <!--- вторая четверка -->
+            <div class="card-product" data-product-id="keksik-klubnika">
+                <img src="./assets/images/grid_Of_cards/keks_klubnika.svg"/>
+                <h3> Кекс с клубникой</h3>
+                <h1> 450₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="keks-chocolate">
+                <img src="./assets/images/grid_Of_cards/cupake_chocolate.svg"/>
+                <h3> Шоколадный кекс</h3>
+                <h1> 350₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="limon-keks">
+                <img src="./assets/images/grid_Of_cards/cupcake_limon.svg"/>
+                <h3> Кекс с лимоном</h3>
+                <h1> 400₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="fistashka-keksik">
+                <img src="./assets/images/grid_Of_cards/ccupcake_fistashka.svg"/>
+                <h3> Кекс с фисташкой</h3>
+                <h1> 450₽</h1>
+            </div>
+
+
+            <!--- третья четверка -->
+            <div class="card-product" data-product-id="donut-one">
+                <img src="./assets/images/grid_Of_cards/donut_chocolate.svg"/>
+                <h3> Шоколадный пончик</h3>
+                <h1> 150₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="donut-caramel">
+                <img src="./assets/images/grid_Of_cards/donut_caramel.svg"/>
+                <h3> Пончик с карамелью</h3>
+                <h1> 170₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="donut-coconut">
+                <img src="./assets/images/grid_Of_cards/donut_coconut.svg"/>  <!-- тут проблема -->
+                <h3> Пончик с кокосом</h3>
+                <h1> 170₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="donut-fruit">
+                <img src="./assets/images/grid_Of_cards/donut_fruit.svg"/>
+                <h3> Фруктовый пончик</h3>
+                <h1> 200₽</h1>
+            </div>
+
+
+            <!--- круассаны -->
+            <div class="card-product" data-product-id="croissant_blueberry">
+                <img src="./assets/images/grid_Of_cards/croissant_blueberry.svg"/> <!-- все круассаны черничные кроме последнего -->
+                <h3> Круассан с черникой</h3>
+                <h1> 250₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="croissant_redberry">
+                <img src="./assets/images/grid_Of_cards/croissant_redberry.svg"/>
+                <h3> Круассан с вишней</h3>
+                <h1> 250₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="croissant_basic">
+                <img src="./assets/images/grid_Of_cards/croissant_default.svg"/>
+                <h3> Круассан</h3>
+                <h1> 150₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="donut-chocolate">
+                <img src="./assets/images/grid_Of_cards/croissant_chocolate.svg"/>
+                <h3> Шоколадный круассан</h3>
+                <h1> 200₽</h1>
+            </div>
+
+
+
+            <!--- пирожки -->
+            <div class="card-product" data-product-id="littlepie-cabbage">
+                <img src="./assets/images/grid_Of_cards/littlepie_cabbage.svg"/>
+                <h3> Пирожок с капустой</h3>
+                <h1> 150₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="littlepie-chicken">
+                <img src="./assets/images/grid_Of_cards/littlepie_chicken.svg"/>
+                <h3> Пирожок с курицей</h3>
+                <h1> 170₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="littlepie-egg-onion">
+                <img src="./assets/images/grid_Of_cards/littlepie_egg_and_onion.svg"/>
+                <h3> Пирожок с яйцом и луком</h3>
+                <h1> 150₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="littlepie-pumpkin">
+                <img src="./assets/images/grid_Of_cards/littlepie_pumpkin.svg"/>  <!-- все блять с капустой-->
+                <h3> Пирожок с тыквой</h3>
+                <h1> 170₽</h1>
+            </div>
+
+
+
+            <!--- хлеб -->
+            <div class="card-product" data-product-id="whitebread_sesame">
+                <img src="./assets/images/grid_Of_cards/whitebread_sesame.svg"/>
+                <h3> Белый хлеб с кунжутом</h3>
+                <h1> 100₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="blackbread_cranberry">
+                <img src="./assets/images/grid_Of_cards/blackbread_cranberry.svg"/>
+                <h3> Черный хлеб с клюквой</h3>
+                <h1> 150₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="rlackbread_bran">
+                <img src="./assets/images/grid_Of_cards/blackbread_bran.svg"/> <!-- черные хлеба идентично-->
+                <h3> Черный отрубной хлеб</h3>
+                <h1> 125₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="greybread">
+                <img src="./assets/images/grid_Of_cards/greybread.svg"/>
+                <h3> Серый хлеб</h3>
+                <h1> 90₽</h1>
+            </div>
+
+
+            <!--- багеты -->
+            <div class="card-product" data-product-id="baget-cheese">
+                <img src="./assets/images/grid_Of_cards/baget_cheese.svg"/>
+                <h3> Багет с сыром</h3>
+                <h1> 125₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="france-baget">
+                <img src="./assets/images/grid_Of_cards/france_baget.svg"/>
+                <h3> Французский багет</h3>
+                <h1> 100₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="baget-sesame">
+                <img src="./assets/images/grid_Of_cards/baget_sesame.svg"/>
+                <h3> Багет с кунжутом</h3>
+                <h1> 110₽</h1>
+            </div>
+
+            <div class="card-product" data-product-id="baget-default">
+                <img src="./assets/images/grid_Of_cards/baget_default.svg"/>
+                <h3> Багет с пудрой</h3>
+                <h1> 115₽</h1>
+            </div>
+
+
+
+            <!--- пироги -->
+            <div class="card-product">
+                <img src="./assets/images/grid_Of_cards/pie_meat.svg"/>
+                <h3> Пирог с фаршем</h3>
+                <h1> 300₽</h1>
+            </div>
+
+            <div class="card-product">
+                <img src="./assets/images/grid_Of_cards/pie_redberry.svg"/>
+                <h3> Вишневый пирог</h3>
+                <h1> 350₽</h1>
+            </div>
+
+            <div class="card-product">
+                <img src="./assets/images/grid_Of_cards/pie_apple.svg"/>
+                <h3> Шарлотка</h3>
+                <h1> 250₽</h1>
+            </div>
+
+            <div class="card-product">
+                <img src="./assets/images/grid_Of_cards/pie_caramel.svg"/>
+                <h3> Тарт с карамелью</h3>
+                <h1> 400₽</h1>
+            </div>
+
+
+        </div>
+
+         
+    </main>
+
+    <footer class="page-footer">
+        <div class="page-footer-content">
+
+            <div class="page-footer-leftblock">
+                <h1> ПекарНя </h1>
+                <div class="footer-colums">
+
+                    <div class="footer-links-container">
+                        <a href="#" class="page-footer__nav-link">О нас</a>
+                        <a href="#" class="page-footer__nav-link"> Каталог </a>
+                        <a href="#" class="page-footer__nav-link"> Контакты </a>
+                    </div>
+
+
+                    <div class="footer-links-container">
+                        <a href="#" class="page-footer__nav-link"> Политика конфиденциальности </a>
+                        <a href="#" class="page-footer__nav-link"> Правила пользования сайтом </a>
+                        <a href="#" class="page-footer__nav-link"> Пользовательское соглашение </a>
+                        <a href="#" class="page-footer__nav-link"> Версия администратора </a>
+                    </div>
+                </div>
+
+                <div class="footer-copyright">
+                    <a href="#" class="page-footer__nav-link"> Все права защищены | ©Copyright 2025 </a>
+                </div>
+
+            </div>   
+        
+
+            <div class="page-footer-rightblock">
+            
+                <div class="social-links">
+                    <h1>Социальные сети </h1>
+                    <a href="#" class="social-link">
+                        <img src="assets/images/VK_logo.svg" alt="Логотип" class="page-footer__logo_sociallink">
+                             ВКонтакте </a>
+                    <a href="#" class="social-link">   
+                        <img src="assets/images/TELEGRAM_logo.svg" class="page-footer__logo_sociallink Telegram"> Telegram </a>
+                    <a href="#" class="social-link"> 
+                        <img src="assets/images/WHATSAPP_logo.svg" class="page-footer__logo_sociallink WhatsAPP">WhatsApp </a>
+                </div>   
+
+            </div>
+        
+            <div class="page-footer-logo">
+                <img src="assets/images/fox_logo_footer.svg" alt="Логотип" class="page-footer__logo-icon">
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class="contact-popup contact-popup--hidden ">
+        <div class="contact" style="position: relative;">
+            <h1>Номер телефона тех. поддержки</h1>
+            <h2>+7 (963) 579-74-79</h2>
+        </div>
+        </div>
+
+     <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
+
+    <div class="product-popup">
+        <div class="popup-content">
+            <button class="close-popup">×</button>
+            <div class="popup-left">
+                <img class="popup-image" src="" alt="Изображение товара">
+            </div>
+            <div class="popup-right">
+                <h2 class="popup-title"></h2>
+                <p class="popup-price"></p>
+                <button class="add-to-cart">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+
+
+<!-- Попап корзины -->
+<div class="cart-popup-overlay"></div>
+<div class="cart-popup">
+    <div class="cart-popup-content">
+
+        <h1>Ваш заказ</h1>
+        <div class="basket-items-container">
+            <!-- Сюда будут добавляться товары -->
+        </div>
+        
+        <p>
+            Бонусы: 
+            <input type="number" class="bonus-to-use" value="0" min="0" style="width:70px;">
+            / <span class="current-bonus-count">0</span>
+        </p>
+        
+        <div class="basket-summary">
+            <p>Бонусы начислятся: <span class="bonus-to-add">0</span></p>
+            <div class="total-price">Итого: 0 ₽</div>
+        </div>
+        
+        <button class="pay-button">Оплатить</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
