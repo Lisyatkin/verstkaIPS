@@ -4110,3 +4110,126 @@ body.body {
     font-size: 18px;
     color: #388e3c;
 }
+
+
+.popup-hidden {
+    display: none !important;
+}
+
+
+/* Оверлей должен быть под попапом */
+.auth-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Меньший z-index */
+}
+
+/* Попап должен быть над оверлеем */
+.auth-popup {
+    background-color: #FFFBF8;
+    border-radius: 20px;
+    position: fixed;
+    width: 90%;
+    max-width: 440px;
+    min-height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 52px;
+    box-sizing: border-box;
+}
+
+.auth-popup h1{
+    font-family:"Phenomena","sans-serif";
+    font-weight: 800;
+    font-size:45px;
+    color:#3C1D07;
+    margin-bottom:59px;
+    text-align: center;
+}
+
+.auth-popup h2{
+    font-family:"Comfortaa","sans-serif";
+    font-weight: 700;
+    font-size:20px;
+     color:#3C1D07;
+     margin-bottom:80px;
+     margin-top:0px;
+}
+
+.auth-popup button{
+    font-family:"Phenomena","sans-serif";
+    font-weight: 800;
+    font-size:25px;
+    background-color: #FFC38C;
+    color: white;
+    border:none;
+    border-radius:10px;
+    max-width: 205px;
+    padding-left:76px;
+    padding-right:76px;
+    padding-top:10px;
+    padding-bottom:10px;
+    cursor: pointer;
+} 
+
+
+
+
+.auth-popup button:hover{
+        color:#3B1D07;
+    background-color:#FFEBDC;
+
+} 
+
+.auth-popup button:active{
+
+    color:#FFFBF8;
+    background-color:#3B1D07;
+
+} 
+
+.auth-popup p{
+    font-family:"Comfortaa","sans-serif";
+    font-weight: 400;
+    font-size:14px;
+     color:#3C1D07;
+     cursor: pointer;
+} 
+
+
+.auth-popup p:hover{
+    cursor: pointer;
+     color:#5A5A5A;
+} 
+
+
+/* Если используете display: none/block для показа/скрытия */
+.auth-popup-overlay-hidden {
+    display: none;
+}
+
+.auth-popup-hidden {
+    display: none;
+}
+
+
+
+
+
+/*<div class="auth-popup-overlay auth-popup-overlay-hidden"></div>
+<div class="auth-popup auth-popup-hidden">
+    <h1>Вы не авторизованы</h1>
+    <h2>Для большего функционала<br>произведите авторизацию</h2>
+    <button id="login-btn">Войти</button>
+    <p>Нет аккаунта?</p>
+</div>*/

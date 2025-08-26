@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupImage = document.querySelector('.popup-image');
     const popupTitle = document.querySelector('.popup-title');
     const popupPrice = document.querySelector('.popup-price');
-    const addToCartBtn = document.querySelector('.add-to-cart-btn'); // кнопка в попапе
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
 
     if (cards.length && productPopup) {
         cards.forEach(card => {
@@ -41,44 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // === Добавление в корзину ===
-// Обновленная функция добавления в корзину
-// === Добавление в корзину ===
-/*function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingProduct = cart.find(p => p.title === product.title);
-    
-    if (existingProduct) {
-        existingProduct.quantity++;
-    } else {
-        cart.push({ 
-            img: product.img,
-            title: product.title,
-            price: product.price,
-            quantity: 1 
-        });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter();
-}
-
-function updateCartCounter() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const counter = document.querySelector('.cart-counter');
-    if (counter) {
-        counter.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-    }
-}
-
-// Инициализация счетчика при загрузке
-updateCartCounter()*/
-
-// Обновление счетчика корзины при загрузке
-document.addEventListener('DOMContentLoaded', function() {
-    Cart.init(); // Инициализируем корзину из cart.js
-});
 
     // === Попап техподдержки ===
     const helpBtn = document.querySelector('.page-header__nav-link_image.help');
@@ -249,38 +211,108 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('DOMContentLoaded', loadProfile);
     }
 
-    // ===== Отображение корзины в попапе =====
-    /*function renderBasketPopup() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const basket = document.querySelector('.buy-basket');
-        if (!basket) return;
+    // === Код для попапа авторизации ===
+function isAuthPopupEnabled() {
+    const currentPage = window.location.pathname.split('/').pop();
+    // Проверяем несколько страниц
+    const enabledPages = [
+        'maps_dontautoriz.html',
+        'firstpage_dontautoriz.html', 
+        'about_dontautorize.html'
+    ];
+    return enabledPages.includes(currentPage);
+}
 
-        const bonusesParagraph = basket.querySelector('p');
-        basket.querySelectorAll('.basket-item').forEach(item => item.remove());
+    function openAuthPopup() {
+        if (!isAuthPopupEnabled()) return;
+        
+        const authPopup = document.querySelector('.auth-popup');
+        const authOverlay = document.querySelector('.auth-popup-overlay');
+        
+        if (authPopup && authOverlay) {
+            authPopup.classList.remove('auth-popup-hidden');
+            authOverlay.classList.remove('auth-popup-overlay-hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    }
 
-        cart.forEach(product => {
-            const item = document.createElement('div');
-            item.className = 'basket-item';
-            item.style.display = 'flex';
-            item.style.alignItems = 'center';
-            item.style.marginBottom = '10px';
+    function closeAuthPopup() {
+        const authPopup = document.querySelector('.auth-popup');
+        const authOverlay = document.querySelector('.auth-popup-overlay');
+        
+        if (authPopup && authOverlay) {
+            authPopup.classList.add('auth-popup-hidden');
+            authOverlay.classList.add('auth-popup-overlay-hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
 
-            item.innerHTML = `
-                <img src="${product.img}" style="width:50px;height:50px;margin-right:10px;">
-                <span style="flex:1;">${product.title}</span>
-                <span>${product.price}</span>
-                <span style="margin:0 10px;">x${product.quantity}</span>
-            `;
+    // Обработчики для корзины и профиля
+    if (isAuthPopupEnabled()) {
+        const cartBtn = document.querySelector('.cart');
+        const profileBtn = document.querySelector('.profile2');
+        const loginBtn = document.getElementById('login-btn');
+        const authOverlay = document.querySelector('.auth-popup-overlay');
 
-            basket.insertBefore(item, bonusesParagraph);
+        // Обработчик для корзины
+        if (cartBtn) {
+            cartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                
+                if (!userData) {
+                    openAuthPopup();
+                } else {
+                    window.location.href = 'cart.html';
+                }
+            });
+        }
+
+        // Обработчик для профиля
+        if (profileBtn) {
+            profileBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                
+                if (!userData) {
+                    openAuthPopup();
+                } else {
+                    window.location.href = 'profile.html';
+                }
+            });
+        }
+
+        // Обработчик для кнопки "Войти"
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function() {
+                closeAuthPopup();
+                window.location.href = 'login.html';
+            });
+        }
+
+        // Закрытие по клику на оверлей
+        if (authOverlay) {
+            authOverlay.addEventListener('click', function(e) {
+                if (e.target === authOverlay) {
+                    closeAuthPopup();
+                }
+            });
+        }
+
+        // Закрытие по ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const authPopup = document.querySelector('.auth-popup');
+                if (authPopup && !authPopup.classList.contains('auth-popup-hidden')) {
+                    closeAuthPopup();
+                }
+            }
         });
     }
 
-    renderBasketPopup(); // отрисовать корзину при загрузке*/
 });
 
-
-// Функции для работы с попапами
+// Функции для работы с попапами профиля
 function openPopup(popupType) {
     const userData = getUserData();
     if (!userData) {
@@ -325,11 +357,9 @@ function updatePhone() {
         return;
     }
     
-    // Обновляем данные пользователя
     userData.phone = newPhone;
     saveUserData(userData);
     
-    // Обновляем отображение в профиле
     document.getElementById('profile-phone').textContent = newPhone;
     
     alert('Номер телефона успешно изменен!');
@@ -342,7 +372,6 @@ function updatePassword() {
     const newPassword = document.getElementById('new-password-input').value;
     const repeatPassword = document.getElementById('repeat-password-input').value;
     
-    // Проверки
     if (oldPassword !== userData.password) {
         alert('Старый пароль введен неверно!');
         return;
@@ -363,20 +392,26 @@ function updatePassword() {
         return;
     }
     
-    // Обновляем данные пользователя
     userData.password = newPassword;
     saveUserData(userData);
     
-    // Обновляем отображение в профиле
     document.getElementById('profile-password').textContent = maskPassword(newPassword);
     
     alert('Пароль успешно изменен!');
     closePopup('passwordPopup');
 }
 
-// Функция для маскировки пароля
 function maskPassword(password) {
     return '*'.repeat(password.length);
+}
+
+// Вспомогательные функции
+function getUserData() {
+    return JSON.parse(localStorage.getItem('userData'));
+}
+
+function saveUserData(userData) {
+    localStorage.setItem('userData', JSON.stringify(userData));
 }
 
 // Закрытие попапов по клику вне области
