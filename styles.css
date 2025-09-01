@@ -1932,10 +1932,12 @@ body.body {
 
 .popup-right {
     width: 50%;
-    padding: 40px;
+    padding: 0px;
+    margin-left:-120px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+     justify-content: space-between;
+     height: 372px; /* такая же высота как у фото */
 }
 
 .close-popup {
@@ -3757,7 +3759,7 @@ body.body {
 .popup-overlay--hidden {
     display: none;
 }
-
+/*
 .popup-content {
     background: #fff;
     padding: 20px;
@@ -3768,8 +3770,9 @@ body.body {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Отступ между заголовком, формами и кнопкой */
-}
+    gap: 30px; 
+    }
+*/ 
 
 .close-popup {
     position: absolute;
@@ -3963,10 +3966,10 @@ body.body {
     padding: 30px;
     border-radius: 20px;
     width: 400px;
-    max-width: 90vw;
-    max-height: 80vh;
+    max-width: 520px;
+    max-height: 705px;
     overflow-y: auto;
-    box-shadow: 0 15px 35px rgba(104, 159, 56, 0.3);
+    box-shadow: 0 15px 35px rgba(132, 0, 255, 0.3);
    
     position: relative;
 }
@@ -3988,7 +3991,7 @@ body.body {
     top: 15px;
     right: 15px;
     background: #f1f8e9;
-    border: 2px solid #aed581;
+    border: 2px solid #648043;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -4233,3 +4236,346 @@ body.body {
     <button id="login-btn">Войти</button>
     <p>Нет аккаунта?</p>
 </div>*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.product-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+/*
+.popup-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 1175px;
+    max-height: 587px;
+    width: 90%;
+
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    gap: 30px;
+    
+}*/
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    z-index: 10;
+}
+/*
+.popup-left {
+    flex: 1;
+}
+*/
+/*
+.popup-image {
+    width: 100%;
+    height: 372px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+*/
+
+.popup-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top:58px;
+     height: 372px; /* Такая же высота как у левого блока */
+    justify-content: space-between; /* Равномерное распределение пространства */
+}
+
+.product-header {
+    margin-bottom: 10px;
+}
+
+.popup-title {
+    font-family:"Comfortaa","sans-serif";
+    font-size: 40px;
+    font-weight: 700;
+    color: #3C1D07;
+    margin-bottom: 0px;
+    margin-top:0px;
+    
+}
+
+.product-details{
+   flex:1;
+   display:flex;
+   flex-direction: column;
+}
+
+.popup-price {
+    font-family:"Comfortaa","sans-serif";
+    font-size: 40px;
+    font-weight: 400;
+    color: #3C1D07;
+}
+
+.product-info {
+    flex: 1;
+    margin-bottom: 25px;
+   
+}
+
+.composition-section h3,
+.nutrition-section h3 {
+    font-family:"Comfortaa","sans-serif";
+    font-weight: 400;
+    font-size: 30px;
+    margin-bottom: auto;
+    color: #3C1D07;
+}
+
+.popup-composition { /*sostav*/
+    font-family:"Comfortaa","sans-serif";
+    font-weight: 400;
+    font-size: 30px;
+    height:90px;
+    margin-top:auto;
+    color: #3C1D07;
+    margin-bottom: calc(20px - (line-height * (number-of-lines - 2)));
+}
+
+.nutrition-info {
+    max-width: 484px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: auto;
+    margin-bottom:5px
+    
+}
+
+.nutrition-item {
+    text-align: left;
+    padding: 0px;
+    background-color: ;
+    border-radius: 12px;
+    display:flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items:center;
+    max-width: 49px;
+    max-height: 51px;
+    
+}
+
+.nutrition-value {
+    display: block;
+    font-family: "Comfortaa","sans-serif";
+    font-size: 20px;
+    font-weight: 400;
+    color: #3C1D07;
+
+}
+
+.nutrition-label {
+    display: block;
+    font-family: "Comfortaa","sans-serif";
+    font-size: 20px;
+    color: #3C1D07;
+margin-bottom: 17px;
+    font-weight: 400;
+}
+
+
+.gramm_and_price{
+        display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px;
+    
+    
+    padding:0px;
+    gap:483px;
+    margin-bottom:49px;
+    margin-top:auto;
+}
+
+.popup_price.two{
+    margin:0px;
+    padding:0px;
+    width: 0px;
+    padding-left:500px;
+}
+
+.nutrition-note {   /*Значения указаны в 100г продукта*/
+    font-family: "Comfortaa","sans-serif";
+    font-weight: 400;
+    font-size: 15px;
+    color: #CAA68C;
+    text-align: left;
+    margin-top:15px;
+    
+    
+    
+
+}
+
+.popup-weight { /*граммовка продукта*/
+    font-family: "Comfortaa","sans-serif";
+    font-size: 40px;
+    color: #3C1D07;
+    text-align: center;
+    font-weight: 400;
+    width:auto;
+    max-width:120px;
+    text-align:left;
+    
+    border-radius: 8px;
+
+    margin:0px;
+    
+    white-space:nowrap;
+}
+
+.add-to-cart {
+    background: #FFC38C;
+    color: #FFFBF8;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 10px;
+    font-family:"Phenomena","sans-serif";
+    font-size: 30px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    margin-left:-45px;
+}
+
+.add-to-cart:hover {
+    background: #FFFBF8;
+    color:#3C1D07;
+}
+
+.add-to-cart:active {
+    background: #3C1D07;
+    color:#FFFBF8;
+
+}
+
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .popup-content {
+        flex-direction: column;
+        padding: 20px;
+        max-width: 95%;
+    }
+    
+    .popup-left {
+        flex: none;
+        width: 100%;
+    }
+    
+    .popup-image {
+        height: 250px;
+    }
+    
+    .popup-title {
+        font-size: 24px;
+    }
+    
+    .popup-price {
+        font-size: 20px;
+    }
+    
+    .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .nutrition-item {
+        padding: 10px;
+    }
+    
+    .nutrition-value {
+        font-size: 18px;
+    }
+    
+    .add-to-cart {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 15px;
+    }
+    
+    .popup-image {
+        height: 200px;
+    }
+    
+    .popup-title {
+        font-size: 20px;
+    }
+    
+    .popup-price {
+        font-size: 18px;
+    }
+    
+    .nutrition-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .nutrition-item {
+        padding: 10px;
+    }
+    
+    .nutrition-value {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

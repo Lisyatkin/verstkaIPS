@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupImage = document.querySelector('.popup-image');
     const popupTitle = document.querySelector('.popup-title');
     const popupPrice = document.querySelector('.popup-price');
-    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    const addToCartBtn = document.querySelector('.add-to-cart');
 
     if (cards.length && productPopup) {
         cards.forEach(card => {
@@ -15,11 +15,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 const imgSrc = this.querySelector('img')?.src;
                 const title = this.querySelector('h3')?.textContent;
                 const price = this.querySelector('h1')?.textContent;
+                
+                // Получаем дополнительные данные
+                const composition = this.dataset.composition || 'Состав не указан';
+                const calories = this.dataset.calories || '0';
+                const protein = this.dataset.protein || '0';
+                const fat = this.dataset.fat || '0';
+                const carbs = this.dataset.carbs || '0';
+                const weight = this.dataset.weight || '0';
 
                 if (imgSrc && title && price) {
                     popupImage.src = imgSrc;
                     popupTitle.textContent = title;
                     popupPrice.textContent = price;
+                    
+                    // Заполняем дополнительные данные
+                    document.querySelector('.popup-composition').textContent = composition;
+                    document.querySelector('.popup-calories').textContent = calories;
+                    document.querySelector('.popup-protein').textContent = protein;
+                    document.querySelector('.popup-fat').textContent = fat;
+                    document.querySelector('.popup-carbs').textContent = carbs;
+                    document.querySelector('.popup-weight').textContent = `${weight} г`;
 
                     productPopup.style.display = 'flex';
                     document.body.style.overflow = 'hidden';
@@ -212,16 +228,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // === Код для попапа авторизации ===
-function isAuthPopupEnabled() {
-    const currentPage = window.location.pathname.split('/').pop();
-    // Проверяем несколько страниц
-    const enabledPages = [
-        'maps_dontautoriz.html',
-        'firstpage_dontautoriz.html', 
-        'about_dontautorize.html'
-    ];
-    return enabledPages.includes(currentPage);
-}
+    function isAuthPopupEnabled() {
+        const currentPage = window.location.pathname.split('/').pop();
+        // Проверяем несколько страниц
+        const enabledPages = [
+            'maps_dontautoriz.html',
+            'firstpage_dontautoriz.html', 
+            'about_dontautorize.html'
+        ];
+        return enabledPages.includes(currentPage);
+    }
 
     function openAuthPopup() {
         if (!isAuthPopupEnabled()) return;
