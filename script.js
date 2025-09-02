@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const agreementChecked = document.getElementById('checkboxregister').checked;
+        const agreementChecked = document.getElementById('checkboxregister1').checked;
         if (!agreementChecked) {
             alert('Необходимо согласие с обработкой данных!');
             return;
@@ -194,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const userData = { name, phone, password };
         localStorage.setItem('userData', JSON.stringify(userData));
         alert('Регистрация успешна!');
+        closeRegisterPopup();
         window.location.href = 'profile.html';
     }
 
@@ -205,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (savedData && savedData.phone === phone && savedData.password === password) {
             alert('Вход выполнен!');
+            closeLoginPopup();
             window.location.href = 'profile.html';
         } else {
             alert('Неверный телефон или пароль!');
@@ -227,27 +229,14 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('DOMContentLoaded', loadProfile);
     }
 
-    // === Код для попапа авторизации ===
-    function isAuthPopupEnabled() {
-        const currentPage = window.location.pathname.split('/').pop();
-        // Проверяем несколько страниц
-        const enabledPages = [
-            'maps_dontautoriz.html',
-            'firstpage_dontautoriz.html', 
-            'about_dontautorize.html'
-        ];
-        return enabledPages.includes(currentPage);
-    }
-
+    // === Функции для управления попапами авторизации ===
     function openAuthPopup() {
-        if (!isAuthPopupEnabled()) return;
-        
         const authPopup = document.querySelector('.auth-popup');
         const authOverlay = document.querySelector('.auth-popup-overlay');
         
         if (authPopup && authOverlay) {
-            authPopup.classList.remove('auth-popup-hidden');
-            authOverlay.classList.remove('auth-popup-overlay-hidden');
+            authPopup.classList.remove('auth-popup--hidden');
+            authOverlay.classList.remove('auth-popup-overlay--hidden');
             document.body.style.overflow = 'hidden';
         }
     }
@@ -257,74 +246,154 @@ document.addEventListener('DOMContentLoaded', function () {
         const authOverlay = document.querySelector('.auth-popup-overlay');
         
         if (authPopup && authOverlay) {
-            authPopup.classList.add('auth-popup-hidden');
-            authOverlay.classList.add('auth-popup-overlay-hidden');
+            authPopup.classList.add('auth-popup--hidden');
+            authOverlay.classList.add('auth-popup-overlay--hidden');
             document.body.style.overflow = 'auto';
         }
     }
 
-    // Обработчики для корзины и профиля
-    if (isAuthPopupEnabled()) {
-        const cartBtn = document.querySelector('.cart');
-        const profileBtn = document.querySelector('.profile2');
-        const loginBtn = document.getElementById('login-btn');
-        const authOverlay = document.querySelector('.auth-popup-overlay');
-
-        // Обработчик для корзины
-        if (cartBtn) {
-            cartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const userData = JSON.parse(localStorage.getItem('userData'));
-                
-                if (!userData) {
-                    openAuthPopup();
-                } else {
-                    window.location.href = 'cart.html';
-                }
-            });
+    function openLoginPopup() {
+        closeAuthPopup();
+        const loginPopup = document.querySelector('.login-popup');
+        const loginOverlay = document.querySelector('.login-popup-overlay');
+        
+        if (loginPopup && loginOverlay) {
+            loginPopup.classList.remove('login-popup--hidden');
+            loginOverlay.classList.remove('login-popup-overlay--hidden');
+            document.body.style.overflow = 'hidden';
         }
+    }
 
-        // Обработчик для профиля
-        if (profileBtn) {
-            profileBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const userData = JSON.parse(localStorage.getItem('userData'));
-                
-                if (!userData) {
-                    openAuthPopup();
-                } else {
-                    window.location.href = 'profile.html';
-                }
-            });
+    function openRegisterPopup() {
+        closeAuthPopup();
+        const registerPopup = document.querySelector('.register-popup');
+        const registerOverlay = document.querySelector('.register-popup-overlay');
+        
+        if (registerPopup && registerOverlay) {
+            registerPopup.classList.remove('register-popup--hidden');
+            registerOverlay.classList.remove('register-popup-overlay--hidden');
+            document.body.style.overflow = 'hidden';
         }
+    }
 
-        // Обработчик для кнопки "Войти"
-        if (loginBtn) {
-            loginBtn.addEventListener('click', function() {
-                closeAuthPopup();
-                window.location.href = 'login.html';
-            });
+    function closeLoginPopup() {
+        const loginPopup = document.querySelector('.login-popup');
+        const loginOverlay = document.querySelector('.login-popup-overlay');
+        
+        if (loginPopup && loginOverlay) {
+            loginPopup.classList.add('login-popup--hidden');
+            loginOverlay.classList.add('login-popup-overlay--hidden');
+            document.body.style.overflow = 'auto';
         }
+    }
 
-        // Закрытие по клику на оверлей
-        if (authOverlay) {
-            authOverlay.addEventListener('click', function(e) {
-                if (e.target === authOverlay) {
-                    closeAuthPopup();
-                }
-            });
+    function closeRegisterPopup() {
+        const registerPopup = document.querySelector('.register-popup');
+        const registerOverlay = document.querySelector('.register-popup-overlay');
+        
+        if (registerPopup && registerOverlay) {
+            registerPopup.classList.add('register-popup--hidden');
+            registerOverlay.classList.add('register-popup-overlay--hidden');
+            document.body.style.overflow = 'auto';
         }
+    }
 
-        // Закрытие по ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const authPopup = document.querySelector('.auth-popup');
-                if (authPopup && !authPopup.classList.contains('auth-popup-hidden')) {
-                    closeAuthPopup();
-                }
+    // === Обработчики для корзины и профиля ===
+    const cartBtn = document.querySelector('.cart');
+    const profileBtn = document.querySelector('.profile2');
+    const loginBtn = document.getElementById('login-btn');
+    const authOverlay = document.querySelector('.auth-popup-overlay');
+
+    // Обработчик для корзины
+    if (cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            
+            if (!userData) {
+                openAuthPopup();
+            } else {
+                window.location.href = 'cart.html';
             }
         });
     }
+
+    // Обработчик для профиля
+    if (profileBtn) {
+        profileBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            
+            if (!userData) {
+                openAuthPopup();
+            } else {
+                window.location.href = 'profile.html';
+            }
+        });
+    }
+
+    // Обработчик для кнопки "Войти" в основном попапе
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            openLoginPopup();
+        });
+    }
+    
+    // Добавляем обработчик для текста "Нет аккаунта?" в основном попапе
+    const authPopupElement = document.querySelector('.auth-popup');
+    if (authPopupElement) {
+        const noAccountText = authPopupElement.querySelector('p');
+        if (noAccountText) {
+            noAccountText.addEventListener('click', function() {
+                openRegisterPopup();
+            });
+         //  noAccountText.style.cursor = 'pointer';
+         //   noAccountText.style.color = '#FF6B35';
+          //  noAccountText.style.textDecoration = 'underline';
+        }
+    }
+
+    // Закрытие по клику на оверлей основного попапа
+    if (authOverlay) {
+        authOverlay.addEventListener('click', function(e) {
+            if (e.target === authOverlay) {
+                closeAuthPopup();
+            }
+        });
+    }
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const authPopup = document.querySelector('.auth-popup');
+            if (authPopup && !authPopup.classList.contains('auth-popup--hidden')) {
+                closeAuthPopup();
+            }
+            
+            const loginPopup = document.querySelector('.login-popup');
+            if (loginPopup && !loginPopup.classList.contains('login-popup--hidden')) {
+                closeLoginPopup();
+            }
+            
+            const registerPopup = document.querySelector('.register-popup');
+            if (registerPopup && !registerPopup.classList.contains('register-popup--hidden')) {
+                closeRegisterPopup();
+            }
+        }
+    });
+
+    // Обработчики закрытия для новых попапов авторизации/регистрации
+    document.querySelector('.login-popup-overlay')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLoginPopup();
+        }
+    });
+    
+    document.querySelector('.register-popup-overlay')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeRegisterPopup();
+        }
+    });
 
 });
 

@@ -28,7 +28,6 @@
     </header>
 
     <main class="main">
-
         <div class="gradient-block1">
             <img src="assets/images/fox1.svg" class="block-image" alt="Фото">
             <div class="block-text1">Вкусная и свежая выпечка каждый день</div>
@@ -38,8 +37,6 @@
                 с <span style="color: #FFC38C;">современными подходами</span> и<br> предлагая классические и полезные <br>альтернативы.</div>
         </div>
 
-
-        <!-- <img src="assets/images/firstfoto3.svg" class="page-main__first_foto" alt="Превью"> -->
         <div class="catalog-first_page">
             <h1> Каталог </h1>
 
@@ -53,7 +50,6 @@
                 <a href="bagets.html" class="catalog-card bagets"></a>
                 <a href="pies.html" class="catalog-card pies"></a>
             </div>
-
         </div>
 
         <div class="gradient-block2">
@@ -66,7 +62,6 @@
                 <br>домашнего хлеба
                 и выпечки по <br>традиционным рецептам.</div>
 
-
             <div class="block-textabout two">Мы используем только <br> 
                 натуральные ингредиенты<br> <span style="color: #FFC38C;">высшего качества</span>, чтобы<br> 
                 наша продукция была <br> вкусной и полезной. В нашем <br>
@@ -74,15 +69,13 @@
                 <br> булочки, пироги и сладости,<br> которые порадуют вас и 
                 <br>ваших близких.</div>
 
-                <div class="block-textabout three">Мы верим, что хорошая выпечка —<br>это <span style="color: #FFC38C;">культура</span>, объединяющая людей.
-                    Поэтому мы создаем <span style="color: #FFC38C;">уютную <br> атмосферу</span> в нашей ПекарНе, где <br> каждый может насладиться свежей <br> выпечкой и провести время с <br> близкими.</div>
-                
-                <h2>Приходите к нам, и мы с радостью поделимся с вами <br>нашей страстью к выпечке!</h2>
+            <div class="block-textabout three">Мы верим, что хорошая выпечка —<br>это <span style="color: #FFC38C;">культура</span>, объединяющая людей.
+                Поэтому мы создаем <span style="color: #FFC38C;">уютную <br> атмосферу</span> в нашей ПекарНе, где <br> каждый может насладиться свежей <br> выпечкой и провести время с <br> близкими.</div>
+            
+            <h2>Приходите к нам, и мы с радостью поделимся с вами <br>нашей страстью к выпечке!</h2>
         </div>
 
-
         <div class="page-map-container">
-            
             <h1>Пекарни</h1>
             <img src="assets/images/fox_logo_footer.svg" alt="Логотип" class="page-map__logo-icon">
             <img src="assets/images/map2.svg" class="page-main__map" alt="Превью">
@@ -92,23 +85,18 @@
             <div class="map_point four" data-lines="Елизаровых 34|08:00 — 20:00|+X (XXX) XXX-XX-XX" data-icons="assets/images/map/metka_white.svg|assets/images/map/clock.svg|assets/images/map/phone.svg"></div>
             <div class="map_point five" data-lines="Шевченко 55|08:00 — 20:00|+X (XXX) XXX-XX-XX" data-icons="assets/images/map/metka_white.svg|assets/images/map/clock.svg|assets/images/map/phone.svg"></div>
         </div>
-        
     </main>
 
     <footer class="page-footer">
         <div class="page-footer-content">
-
             <div class="page-footer-leftblock">
                 <h1> ПекарНя </h1>
                 <div class="footer-colums">
-
                     <div class="footer-links-container">
                         <a href="#" class="page-footer__nav-link">О нас</a>
                         <a href="#" class="page-footer__nav-link"> Каталог </a>
                         <a href="#" class="page-footer__nav-link"> Контакты </a>
                     </div>
-
-
                     <div class="footer-links-container">
                         <a href="#" class="page-footer__nav-link"> Политика конфиденциальности </a>
                         <a href="#" class="page-footer__nav-link"> Правила пользования сайтом </a>
@@ -116,16 +104,12 @@
                         <a href="#" class="page-footer__nav-link"> Версия администратора </a>
                     </div>
                 </div>
-
                 <div class="footer-copyright">
                     <a href="#" class="page-footer__nav-link"> Все права защищены | ©Copyright 2025 </a>
                 </div>
-
             </div>   
-        
 
             <div class="page-footer-rightblock">
-            
                 <div class="social-links">
                     <h1>Социальные сети </h1>
                     <a href="#" class="social-link">
@@ -136,7 +120,6 @@
                     <a href="#" class="social-link"> 
                         <img src="assets/images/WHATSAPP_logo.svg" class="page-footer__logo_sociallink WhatsAPP">WhatsApp </a>
                 </div>   
-
             </div>
         
             <div class="page-footer-logo">
@@ -145,34 +128,72 @@
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-    <div class="auth-popup-overlay auth-popup-overlay-hidden"></div>
-<div class="auth-popup auth-popup-hidden">
+<!-- В конце body, перед script.js -->
+<!-- Попап авторизации (должен быть скрыт изначально) -->
+<div class="auth-popup-overlay auth-popup-overlay--hidden"></div>
+<div class="auth-popup auth-popup--hidden">
     <h1>Вы не авторизованы</h1>
     <h2>Для большего функционала<br>произведите авторизацию</h2>
     <button id="login-btn">Войти</button>
-    <p>Нет аккаунта?</p>
+    <p id="no-account">Нет аккаунта?</p>
 </div>
 
-    <!-- Всякие блядские попапы-->
-     <div class="contact-popup contact-popup--hidden ">
+<!-- Попап входа (должен быть скрыт изначально) -->
+<div class="login-popup-overlay login-popup-overlay--hidden"></div>
+<div class="login-popup login-popup--hidden">
+    <div class="login">
+        <img src="assets/images/popaps/autorize_fox.svg"/>
+        <div class="login-right">
+            <h1> Авторизация </h1>
+            <input type="tel" id="login-phone" placeholder="+7 (999) 999-99-99">
+            <input type="password" id="login-password" placeholder="Пароль">
+            <h5 id="no-account"> Забыли пароль? </h5>
+            <button onclick="loginUser()">Войти</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Попап регистрации -->
+<!-- Попап регистрации (должен быть скрыт изначально) -->
+<div class="register-popup-overlay register-popup-overlay--hidden"></div>
+<div class="register-popup register-popup--hidden">
+    <div class="register">
+        <img src="assets/images/popaps/register_fox.svg">
+        <div class="login-right">
+            <h1> Регистрация </h1>
+            <input type="text" id="register-name" placeholder="Имя">
+            <input type="tel" id="register-phone" placeholder="+7 (999) 999-99-99">
+            <input type="password" id="register-password" placeholder="Пароль">
+            <input type="password" id="register-repeat-password" placeholder="Повторите пароль">
+            
+            <div class="checkboxs-container">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="checkboxregister1">
+                    <label for="checkboxregister1"> Я Согласен с обработкой своих персональных данных в соответствии с Политикой обработки персональных данных и Публичной офертой</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="checkboxregister2">
+                    <label for="checkboxregister2"> Я согласен получать рекламную рассылку и <br> ознакомился с Согласием на получение рекламной <br>рассылки</label>
+                </div>
+            </div>
+            
+            <button onclick="registerUser()">Зарегистрироваться</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Попап техподдержки -->
+    <div class="contact-popup contact-popup--hidden">
         <div class="contact" style="position: relative;">
             <h1>Номер телефона тех. поддержки</h1>
             <h2>+7 (963) 579-74-79</h2>
         </div>
-        </div>
+    </div>
+    <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
 
-     <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
-     <script src="script.js"></script>
-
+    <script src="auth.js"></script>
+<script src="script.js"></script>
+<script src="addAddressPopup.js"></script>
+<script src="cart.js"></script>
 </body>
 </html>
