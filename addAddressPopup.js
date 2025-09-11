@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Загружаем сохраненный адрес при загрузке страницы
+    loadSavedAddress();
+    
+    // Находим блок с адресом, который будем заменять
+    const addressBlock = document.querySelector('.adress-info:not(.peak) .adress-stroke h2');
+    
     // Точно выбираем ТОЛЬКО блок "Добавить адрес" (с классом .peak)
     const addAddressBlock = document.querySelector('.adress-stroke.peak');
     
@@ -63,6 +69,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const address = addressInput.value.trim();
         
         if (address) {
+            // Обновляем текст адреса в профиле
+            if (addressBlock) {
+                addressBlock.textContent = address;
+            }
+            
+            // Сохраняем адрес в localStorage
+            saveAddress(address);
+            
             console.log('Добавлен новый адрес:', address);
             popupOverlay.style.display = 'none';
             addressInput.value = '';
@@ -70,4 +84,19 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Пожалуйста, введите адрес');
         }
     });
+
+    // Функция для сохранения адреса в localStorage
+    function saveAddress(address) {
+        localStorage.setItem('userAddress', address);
+    }
+
+    // Функция для загрузки сохраненного адреса
+    function loadSavedAddress() {
+        const savedAddress = localStorage.getItem('userAddress');
+        const addressBlock = document.querySelector('.adress-info:not(.peak) .adress-stroke h2');
+        
+        if (savedAddress && addressBlock) {
+            addressBlock.textContent = savedAddress;
+        }
+    }
 });

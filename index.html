@@ -22,7 +22,10 @@
             <div class="page-header__nav-icons">
                 <a href="#" class="page-header__nav-link_image help" id="help-button"> </a>
                 <a href="/profile.html" class="page-header__nav-link_image profile"></a>
-                <a href="/cart.html" class="page-header__nav-link_image cart"></a>
+                <a href="/cart.html" class="page-header__nav-link_image cart">
+                    <img src="assets/images/cart.svg" alt="">
+                    <span class="cart-counter">0</span>
+                </a>
             </div>
         </div>
     </header>
@@ -79,7 +82,7 @@
                 
                 <h2>Приходите к нам, и мы с радостью поделимся с вами <br>нашей страстью к выпечке!</h2>
         </div>
-
+        
 
         <div class="page-map-container">
             
@@ -95,16 +98,16 @@
         
     </main>
 
-    <footer class="page-footer">
+       <footer class="page-footer">
         <div class="page-footer-content">
 
             <div class="page-footer-leftblock">
                 <h1> ПекарНя </h1>
                 <div class="footer-colums">
 
-                    <div class="footer-links-container">
-                        <a href="#" class="page-footer__nav-link">О нас</a>
-                        <a href="#" class="page-footer__nav-link"> Каталог </a>
+<div class="footer-links-container">
+                        <a href="about_dontautorize.html" class="page-footer__nav-link">О нас</a>
+                        <a href="about_catalog.html" class="page-footer__nav-link"> Каталог </a>
                         <a href="#" class="page-footer__nav-link"> Контакты </a>
                     </div>
 
@@ -144,7 +147,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Всякие блядские попапы-->
      <div class="contact-popup contact-popup--hidden ">
         <div class="contact" style="position: relative;">
@@ -153,8 +155,37 @@
         </div>
         </div>
 
+
+        <!-- Попап корзины -->
+<div class="cart-popup-overlay"></div>
+<div class="cart-popup">
+    <div class="cart-popup-content">
+
+        <h1>Ваш заказ</h1>
+        <div class="basket-items-container">
+            <!-- Сюда будут добавляться товары -->
+        </div>
+        
+        <p>
+            Бонусы: 
+            <input type="number" class="bonus-to-use" value="0" min="0" style="width:70px;">
+            / <span class="current-bonus-count">0</span>
+        </p>
+        
+        <div class="basket-summary">
+            <p>Бонусы начислятся: <span class="bonus-to-add">0</span></p>
+            <div class="total-price">Итого: 0 ₽</div>
+        </div>
+        
+        <button class="pay-button">Оплатить</button>
+    </div>
+</div>
+
+
+
      <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
      <script src="script.js"></script>
+     <script src="cart.js"></script>
 
 </body>
 </html>

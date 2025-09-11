@@ -8,7 +8,7 @@
 </head>
 <body class="body">
     <header class="page-header">
-        <div class="page-header__container">
+        <div class="page-header__container ">
             <a href="index.html" class="page-header__logo">
                 <img src="assets/images/logo.svg" alt="Логотип" class="page-header__logo-icon">
             </a>
@@ -22,7 +22,10 @@
             <div class="page-header__nav-icons">
                 <a href="#" class="page-header__nav-link_image help"></a>
                 <a href="/profile.html" class="page-header__nav-link_image profile"></a>
-                <a href="/cart.html" class="page-header__nav-link_image cart"></a>
+                <a href="/cart.html" class="page-header__nav-link_image cart">
+                    <img src="assets/images/cart.svg" alt="">
+                    <span class="cart-counter">0</span>
+                </a>
             </div>
         </div>
     </header>
@@ -83,25 +86,49 @@
 
 
             <!--- багеты -->
-            <div class="card-product" data-product-id="baget-cheese">
+            <div class="card-product" data-product-id="baget-cheese"
+            data-composition="Мука, сахар, сыр, яйца, сливочное масло, разрыхлитель теста, молоко, соль." 
+                    data-calories="275" 
+                    data-protein="3" 
+                    data-fat="12" 
+                    data-carbs="40"
+                    data-weight="200">
                 <img src="./assets/images/grid_Of_cards/baget_cheese.svg"/>
                 <h3> Багет с сыром</h3>
                 <h1> 125₽</h1>
             </div>
 
-            <div class="card-product" data-product-id="france-baget">
+            <div class="card-product" data-product-id="france-baget"
+            data-composition="Мука, сахар, франция, яйца, сливочное масло, разрыхлитель теста, молоко, соль." 
+                    data-calories="275" 
+                    data-protein="3" 
+                    data-fat="12" 
+                    data-carbs="40"
+                    data-weight="400">
                 <img src="./assets/images/grid_Of_cards/france_baget.svg"/>
                 <h3> Французский багет</h3>
                 <h1> 100₽</h1>
             </div>
 
-            <div class="card-product" data-product-id="baget-sesame">
+            <div class="card-product" data-product-id="baget-sesame"
+            data-composition="Мука, сахар, кунжут, яйца, сливочное масло, разрыхлитель теста, молоко, соль." 
+                    data-calories="275" 
+                    data-protein="3" 
+                    data-fat="12" 
+                    data-carbs="40"
+                    data-weight="200">
                 <img src="./assets/images/grid_Of_cards/baget_sesame.svg"/>
                 <h3> Багет с кунжутом</h3>
                 <h1> 110₽</h1>
             </div>
 
-            <div class="card-product" data-product-id="baget-default">
+            <div class="card-product" data-product-id="baget-default"
+            data-composition="Мука, сахар, пудра, яйца, сливочное масло, разрыхлитель теста, молоко, соль." 
+                    data-calories="275" 
+                    data-protein="3" 
+                    data-fat="12" 
+                    data-carbs="40"
+                    data-weight="200">
                 <img src="./assets/images/grid_Of_cards/baget_default.svg"/>
                 <h3> Багет с пудрой</h3>
                 <h1> 115₽</h1>
@@ -123,9 +150,9 @@
                 <h1> ПекарНя </h1>
                 <div class="footer-colums">
 
-                    <div class="footer-links-container">
-                        <a href="#" class="page-footer__nav-link">О нас</a>
-                        <a href="#" class="page-footer__nav-link"> Каталог </a>
+<div class="footer-links-container">
+                        <a href="about_dontautorize.html" class="page-footer__nav-link">О нас</a>
+                        <a href="about_catalog.html" class="page-footer__nav-link"> Каталог </a>
                         <a href="#" class="page-footer__nav-link"> Контакты </a>
                     </div>
 
@@ -167,7 +194,8 @@
     </footer>
 
 
-        <div class="contact-popup contact-popup--hidden ">
+
+    <div class="contact-popup contact-popup--hidden ">
         <div class="contact" style="position: relative;">
             <h1>Номер телефона тех. поддержки</h1>
             <h2>+7 (963) 579-74-79</h2>
@@ -176,23 +204,102 @@
 
      <div class="contact-popup-overlay contact-popup-overlay--hidden"></div>
 
-    <div class="product-popup">
-        <div class="popup-content">
-            <button class="close-popup">×</button>
-            <div class="popup-left">
-                <img class="popup-image" src="" alt="Изображение товара">
+<div class="product-popup">
+    <div class="popup-content">
+        <button class="close-popup">×</button>
+        
+        <div class="popup-left">
+            <img class="popup-image" src="" alt="Изображение товара">
+        </div>
+        
+        <div class="popup-right">
+            <h2 class="popup-title"></h2>
+            
+            <div class="product-details">
+                <div class="composition-section">
+                    <h3>Состав:</h3>
+                    <p class="popup-composition"></p>
+                </div>
+                
+                <div class="nutrition-info">
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">Ккал</span>
+                        <span class="nutrition-value popup-calories">0</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">Белки</span>
+                        <span class="nutrition-value popup-protein">0</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">Жиры</span>
+                        <span class="nutrition-value popup-fat">0</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">Углеводы</span>
+                        <span class="nutrition-value popup-carbs">0</span>
+                    </div>
+                </div>
+                
+                <p class="nutrition-note">Значения указаны в 100 г продукта</p>
+                <div class="gramm_and_price">
+                    <p class="popup-weight"></p>
+                    <span class="popup-price two"></span>
+                </div>
             </div>
-            <div class="popup-right">
-                <h2 class="popup-title"></h2>
-                <p class="popup-price"></p>
+            
+            <div class="product-footer">
                 <button class="add-to-cart">Добавить в корзину</button>
             </div>
         </div>
     </div>
+</div>
+
+
+
+
+
+    
+
+
+<!-- Попап корзины -->
+<div class="cart-popup-overlay"></div>
+<div class="cart-popup">
+    <div class="cart-popup-content">
+
+        <h1>Ваш заказ</h1>
+        <div class="basket-items-container">
+            <!-- Сюда будут добавляться товары -->
+        </div>
+        
+        <p>
+            Бонусы: 
+            <input type="number" class="bonus-to-use" value="0" min="0" style="width:70px;">
+            / <span class="current-bonus-count">0</span>
+        </p>
+        
+        <div class="basket-summary">
+            <p>Бонусы начислятся: <span class="bonus-to-add">0</span></p>
+            <div class="total-price">Итого: 0 ₽</div>
+        </div>
+        
+        <button class="pay-button">Оплатить</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <script src="script.js"></script>
     <script src="cart.js"></script>
-
 </body>
 </html>

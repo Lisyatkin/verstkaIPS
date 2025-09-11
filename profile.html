@@ -10,7 +10,7 @@
     <body class="body">
         
     <header class="page-header">
-        <div class="page-header__container">
+        <div class="page-header__container ">
             <a href="index.html" class="page-header__logo">
                 <img src="assets/images/logo.svg" alt="Логотип" class="page-header__logo-icon">
             </a>
@@ -24,7 +24,10 @@
             <div class="page-header__nav-icons">
                 <a href="#" class="page-header__nav-link_image help"></a>
                 <a href="/profile.html" class="page-header__nav-link_image profile"></a>
-                <a href="/cart.html" class="page-header__nav-link_image cart"></a>
+                <a href="/cart.html" class="page-header__nav-link_image cart">
+                    <img src="assets/images/cart.svg" alt="">
+                    <span class="cart-counter">0</span>
+                </a>
             </div>
         </div>
     </header>
@@ -54,26 +57,30 @@
 
                 <div class="right-info">
                     <div class="right-info-first">
-                        <h2>Мои адреса</h2>
+                        <h2>Мой адрес</h2>
                         <h3>В пределах г. Томск</h3>
                     </div>
 
                     <div class="adress-info">
                         <div class="adress-stroke">
-                            <h2> Пр-т Ленина, д.40</h2>
+                            <h2> Необходимо добавить адрес </h2>
                         </div>
                     </div>
 
                     <div class="adress-info peak">
                         <div class="adress-stroke peak">
-                            <h3> Добавить адрес<span style="color: #FFEBDC">_______________________________________</span></h3>
+                            <h3> Добавить адрес<span style="color: #FFEBDC"></span></h3>
                         </div>
                     </div>
                     
                     <div class="bonus-profile">
                         <h2>Бонусы</h2>
                         <h3>Количество бонусов: <span class="current-bonus-count-profile">0</span></h3>
-                        <h3> </h3>
+                        
+
+                            <div class="bottom-container">
+                            <button class="logout-btn">Выйти</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,11 +91,11 @@
                 <div class="page-footer-leftblock">
                     <h1> ПекарНя </h1>
                     <div class="footer-colums">
-                        <div class="footer-links-container">
-                            <a href="#" class="page-footer__nav-link">О нас</a>
-                            <a href="#" class="page-footer__nav-link"> Каталог </a>
-                            <a href="#" class="page-footer__nav-link"> Контакты </a>
-                        </div>
+<div class="footer-links-container">
+                        <a href="about_dontautorize.html" class="page-footer__nav-link">О нас</a>
+                        <a href="about_catalog.html" class="page-footer__nav-link"> Каталог </a>
+                        <a href="#" class="page-footer__nav-link"> Контакты </a>
+                    </div>
 
                         <div class="footer-links-container">
                             <a href="#" class="page-footer__nav-link"> Политика конфиденциальности </a>
@@ -159,12 +166,12 @@
         <h2>Изменить номер телефона</h2>
         
         <div class="popup-form-group">
-            <label>Старый номер</label>
+            <label>Старый номер телефона</label>
             <input type="tel" id="old-phone-input" readonly>
         </div>
         
         <div class="popup-form-group">
-            <label>Новый номер</label>
+            <label>Новый номер телефона</label>
             <input type="tel" id="new-phone-input" placeholder="+7 (999) 999-99-99">
         </div>
         
@@ -191,7 +198,7 @@
             </div>
             
             <div class="popup-form-group">
-                <label>Повторите пароль</label>
+                <label>Повторите новый пароль</label>
                 <input type="password" id="repeat-password-input" placeholder="Пароль">
             </div>
         </div>
@@ -202,6 +209,32 @@
 </div>
 
 
+
+
+<!-- Попап корзины -->
+<div class="cart-popup-overlay"></div>
+<div class="cart-popup">
+    <div class="cart-popup-content">
+
+        <h1>Ваш заказ</h1>
+        <div class="basket-items-container">
+            <!-- Сюда будут добавляться товары -->
+        </div>
+        
+        <p>
+            Бонусы: 
+            <input type="number" class="bonus-to-use" value="0" min="0" style="width:70px;">
+            / <span class="current-bonus-count">0</span>
+        </p>
+        
+        <div class="basket-summary">
+            <p>Бонусы начислятся: <span class="bonus-to-add">0</span></p>
+            <div class="total-price">Итого: 0 ₽</div>
+        </div>
+        
+        <button class="pay-button">Оплатить</button>
+    </div>
+</div>
 
 
 

@@ -9,14 +9,14 @@
 <body class="body">
     <header class="page-header">
         <div class="page-header__container">
-            <a href="index.html" class="page-header__logo">
+            <a href="#" class="page-header__logo">
                 <img src="assets/images/logo.svg" alt="Логотип" class="page-header__logo-icon">
             </a>
 
             <nav class="page-header__nav">
-                <a href="/catalog.html" class="page-header__nav-link">Каталог</a>
-                <a href="/about.html" class="page-header__nav-link">О нас</a>
-                <a href="/bakeries.html" class="page-header__nav-link">Пекарни</a>
+                <a href="/about_catalog.html" class="page-header__nav-link">Каталог</a>
+                <a href="/about_dontautorize.html" class="page-header__nav-link">О нас</a>
+                <a href="/maps_dontautoriz.html" class="page-header__nav-link">Пекарни</a>
             </nav>
 
             <div class="page-header__nav-icons">
@@ -41,17 +41,17 @@
             <h1> Каталог </h1>
 
             <div class="catalog-grid">
-                <a href="cakes.html" class="catalog-card cakes"></a>
-                <a href="cupcakes.html" class="catalog-card cupcakes"></a>
-                <a href="donuts.html" class="catalog-card donuts"></a>
-                <a href="croissants.html" class="catalog-card сroissants"></a>
-                <a href="littlepies.html" class="catalog-card littlepies"></a>
-                <a href="breads.html" class="catalog-card breads"></a>
-                <a href="bagets.html" class="catalog-card bagets"></a>
-                <a href="pies.html" class="catalog-card pies"></a>
+                <a href="about_cakes.html" class="catalog-card cakes"></a>
+                <a href="about_cupcakes.html" class="catalog-card cupcakes"></a>
+                <a href="about_donuts.html" class="catalog-card donuts"></a>
+                <a href="about_croissants.html" class="catalog-card сroissants"></a>
+                <a href="about_littlepies.html" class="catalog-card littlepies"></a>
+                <a href="about_breads.html" class="catalog-card breads"></a>
+                <a href="about_bagets.html" class="catalog-card bagets"></a>
+                <a href="about_pies.html" class="catalog-card pies"></a>
             </div>
         </div>
-
+        
         <div class="gradient-block2">
             <img src="assets/images/cupcake_about.svg" class="block-image2" alt="Фото">
             <h1> О нас</h1>
@@ -92,9 +92,9 @@
             <div class="page-footer-leftblock">
                 <h1> ПекарНя </h1>
                 <div class="footer-colums">
-                    <div class="footer-links-container">
-                        <a href="#" class="page-footer__nav-link">О нас</a>
-                        <a href="#" class="page-footer__nav-link"> Каталог </a>
+<div class="footer-links-container">
+                        <a href="about_dontautorize.html" class="page-footer__nav-link">О нас</a>
+                        <a href="about_catalog.html" class="page-footer__nav-link"> Каталог </a>
                         <a href="#" class="page-footer__nav-link"> Контакты </a>
                     </div>
                     <div class="footer-links-container">
@@ -147,12 +147,29 @@
             <h1> Авторизация </h1>
             <input type="tel" id="login-phone" placeholder="+7 (999) 999-99-99">
             <input type="password" id="login-password" placeholder="Пароль">
-            <h5 id="no-account"> Забыли пароль? </h5>
+            <h5 id="forgot-password-link"> Забыли пароль? </h5>
             <button onclick="loginUser()">Войти</button>
         </div>
     </div>
 </div>
 
+
+
+    <!-- Попап сброса пароля (должен быть скрыт изначально) -->
+    <div class="reset-password-popup-overlay reset-password-popup-overlay--hidden"></div>
+    <div class="reset-password-popup reset-password-popup--hidden">
+        <div class="newpassword">
+            <h1>Страница сброса пароля</h1>
+            <h2>Забыли пароль?</h2>
+            <h3>Укажите свой номер телефона, под которым<br>
+                 вы зарегистрированы на сайте и на него<br>
+                 будет отправлена информация о<br>
+                 восстановлении пароля</h3>
+            <input type="tel" class="strokavvoda" id="inputnewpassword" placeholder="+7 (999) 999-99-99">
+            
+            <button>Отправить</button>
+        </div>
+    </div>
     <!-- Попап регистрации -->
 <!-- Попап регистрации (должен быть скрыт изначально) -->
 <div class="register-popup-overlay register-popup-overlay--hidden"></div>

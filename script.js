@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const title = this.querySelector('h3')?.textContent;
                 const price = this.querySelector('h1')?.textContent;
                 
-                // Получаем дополнительные данные
                 const composition = this.dataset.composition || 'Состав не указан';
                 const calories = this.dataset.calories || '0';
                 const protein = this.dataset.protein || '0';
@@ -28,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     popupImage.src = imgSrc;
                     popupTitle.textContent = title;
                     popupPrice.textContent = price;
-                    
-                    // Заполняем дополнительные данные
                     document.querySelector('.popup-composition').textContent = composition;
                     document.querySelector('.popup-calories').textContent = calories;
                     document.querySelector('.popup-protein').textContent = protein;
@@ -83,6 +80,59 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         supportOverlay.addEventListener('click', closeSupportPopup);
+    }
+
+    // === Попап сброса пароля ===
+    const resetPasswordPopup = document.querySelector('.reset-password-popup');
+    const resetPasswordOverlay = document.querySelector('.reset-password-popup-overlay');
+    const resetPasswordCloseBtn = document.querySelector('.reset-password-close-btn');
+
+    if (resetPasswordPopup && resetPasswordOverlay) {
+        function openResetPasswordPopup() {
+            closeLoginPopup();
+            resetPasswordPopup.classList.remove('reset-password-popup--hidden');
+            resetPasswordOverlay.classList.remove('reset-password-popup-overlay--hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResetPasswordPopup() {
+            resetPasswordPopup.classList.add('reset-password-popup--hidden');
+            resetPasswordOverlay.classList.add('reset-password-popup-overlay--hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        if (resetPasswordCloseBtn) {
+            resetPasswordCloseBtn.addEventListener('click', closeResetPasswordPopup);
+        }
+
+        resetPasswordOverlay.addEventListener('click', function (e) {
+            if (e.target === resetPasswordOverlay) {
+                closeResetPasswordPopup();
+            }
+        });
+
+        const forgotPasswordLink = document.getElementById('forgot-password-link');
+        if (forgotPasswordLink) {
+            forgotPasswordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openResetPasswordPopup();
+            });
+            forgotPasswordLink.style.cursor = 'pointer';
+            forgotPasswordLink.style.color = '#3B1D07';
+        }
+
+        // Добавьте обработчик для кнопки отправки
+        const resetPasswordSubmitBtn = resetPasswordPopup.querySelector('button:not(.reset-password-close-btn)');
+        if (resetPasswordSubmitBtn) {
+            resetPasswordSubmitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const phoneInput = document.getElementById('inputnewpassword');
+                if (phoneInput && phoneInput.value) {
+                    closeResetPasswordPopup();
+                }
+            });
+        }
     }
 
     // === Тултипы для map_point ===
@@ -181,21 +231,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const repeatPassword = document.getElementById('register-repeat-password').value;
 
         if (password !== repeatPassword) {
-            alert('Пароли не совпадают!');
             return;
         }
 
         const agreementChecked = document.getElementById('checkboxregister1').checked;
         if (!agreementChecked) {
-            alert('Необходимо согласие с обработкой данных!');
             return;
         }
 
         const userData = { name, phone, password };
         localStorage.setItem('userData', JSON.stringify(userData));
-        alert('Регистрация успешна!');
+
         closeRegisterPopup();
-        window.location.href = 'profile.html';
+
+        setTimeout(() => {
+            openLoginPopup();
+            const phoneInput = document.getElementById('login-phone');
+            if (phoneInput) phoneInput.value = phone;
+            const passInput = document.getElementById('login-password');
+            if (passInput) passInput.focus();
+        }, 150);
     }
 
     // ===== Авторизация =====
@@ -205,13 +260,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const savedData = JSON.parse(localStorage.getItem('userData'));
 
         if (savedData && savedData.phone === phone && savedData.password === password) {
-            alert('Вход выполнен!');
             closeLoginPopup();
             window.location.href = 'profile.html';
-        } else {
-            alert('Неверный телефон или пароль!');
         }
     }
+
+    window.registerUser = registerUser;
+    window.loginUser = loginUser;
 
     // ===== Загрузка профиля =====
     function loadProfile() {
@@ -220,8 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('profile-name').textContent = `${userData.name}`;
             document.getElementById('profile-phone').textContent = `${userData.phone}`;
         } else {
-            alert('Пожалуйста, сначала зарегистрируйтесь!');
-            window.location.href = 'index.html';
+            window.location.href = 'firstpage_dontautoriz.html';
         }
     }
 
@@ -264,6 +318,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function closeLoginPopup() {
+        const loginPopup = document.querySelector('.login-popup');
+        const loginOverlay = document.querySelector('.login-popup-overlay');
+        
+        if (loginPopup && loginOverlay) {
+            loginPopup.classList.add('login-popup--hidden');
+            loginOverlay.classList.add('login-popup-overlay--hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
     function openRegisterPopup() {
         closeAuthPopup();
         const registerPopup = document.querySelector('.register-popup');
@@ -273,17 +338,6 @@ document.addEventListener('DOMContentLoaded', function () {
             registerPopup.classList.remove('register-popup--hidden');
             registerOverlay.classList.remove('register-popup-overlay--hidden');
             document.body.style.overflow = 'hidden';
-        }
-    }
-
-    function closeLoginPopup() {
-        const loginPopup = document.querySelector('.login-popup');
-        const loginOverlay = document.querySelector('.login-popup-overlay');
-        
-        if (loginPopup && loginOverlay) {
-            loginPopup.classList.add('login-popup--hidden');
-            loginOverlay.classList.add('login-popup-overlay--hidden');
-            document.body.style.overflow = 'auto';
         }
     }
 
@@ -304,26 +358,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginBtn = document.getElementById('login-btn');
     const authOverlay = document.querySelector('.auth-popup-overlay');
 
-    // Обработчик для корзины
     if (cartBtn) {
         cartBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const userData = JSON.parse(localStorage.getItem('userData'));
-            
             if (!userData) {
                 openAuthPopup();
             } else {
-                window.location.href = 'cart.html';
+                openAuthPopup();
             }
         });
     }
 
-    // Обработчик для профиля
     if (profileBtn) {
         profileBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const userData = JSON.parse(localStorage.getItem('userData'));
-            
             if (!userData) {
                 openAuthPopup();
             } else {
@@ -332,14 +382,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Обработчик для кнопки "Войти" в основном попапе
     if (loginBtn) {
         loginBtn.addEventListener('click', function() {
             openLoginPopup();
         });
     }
-    
-    // Добавляем обработчик для текста "Нет аккаунта?" в основном попапе
+
     const authPopupElement = document.querySelector('.auth-popup');
     if (authPopupElement) {
         const noAccountText = authPopupElement.querySelector('p');
@@ -347,13 +395,9 @@ document.addEventListener('DOMContentLoaded', function () {
             noAccountText.addEventListener('click', function() {
                 openRegisterPopup();
             });
-         //  noAccountText.style.cursor = 'pointer';
-         //   noAccountText.style.color = '#FF6B35';
-          //  noAccountText.style.textDecoration = 'underline';
         }
     }
 
-    // Закрытие по клику на оверлей основного попапа
     if (authOverlay) {
         authOverlay.addEventListener('click', function(e) {
             if (e.target === authOverlay) {
@@ -362,49 +406,110 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Закрытие по ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const authPopup = document.querySelector('.auth-popup');
             if (authPopup && !authPopup.classList.contains('auth-popup--hidden')) {
                 closeAuthPopup();
             }
-            
             const loginPopup = document.querySelector('.login-popup');
             if (loginPopup && !loginPopup.classList.contains('login-popup--hidden')) {
                 closeLoginPopup();
             }
-            
             const registerPopup = document.querySelector('.register-popup');
             if (registerPopup && !registerPopup.classList.contains('register-popup--hidden')) {
                 closeRegisterPopup();
             }
+            const resetPasswordPopup = document.querySelector('.reset-password-popup');
+            if (resetPasswordPopup && !resetPasswordPopup.classList.contains('reset-password-popup--hidden')) {
+                closeResetPasswordPopup();
+            }
+            const supportPopup = document.querySelector('.contact-popup');
+            if (supportPopup && !supportPopup.classList.contains('contact-popup--hidden')) {
+                closeSupportPopup();
+            }
+            if (productPopup && productPopup.style.display === 'flex') {
+                productPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
     });
 
-    // Обработчики закрытия для новых попапов авторизации/регистрации
     document.querySelector('.login-popup-overlay')?.addEventListener('click', function(e) {
         if (e.target === this) {
             closeLoginPopup();
         }
     });
-    
+
     document.querySelector('.register-popup-overlay')?.addEventListener('click', function(e) {
         if (e.target === this) {
             closeRegisterPopup();
         }
     });
 
+    // --- Биндим формы и отменяем submit ---
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            registerUser();
+        });
+    }
+
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            loginUser();
+        });
+    }
+
+    // === Обработчик для кнопки "Добавить в корзину" на конкретных страницах ===
+    const targetPages = [
+        'about_bagets.html',
+        'about_breads.html',
+        'about_cakes.html',
+        'about_catalog.html',
+        'about_croissants.html',
+        'about_donuts.html',
+        'about_littlepies.html',
+        'about_pies.html'
+    ];
+
+    const currentPage = window.location.pathname.split('/').pop();
+    const isTargetPage = targetPages.includes(currentPage);
+
+    if (isTargetPage && addToCartBtn) {
+        addToCartBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData) {
+                productPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                setTimeout(function() {
+                    openAuthPopup();
+                }, 50);
+            } else {
+                const productData = {
+                    title: popupTitle.textContent,
+                    price: popupPrice.textContent,
+                    image: popupImage.src,
+                    composition: document.querySelector('.popup-composition').textContent,
+                    weight: document.querySelector('.popup-weight').textContent
+                };
+                productPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
 });
 
 // Функции для работы с попапами профиля
 function openPopup(popupType) {
     const userData = getUserData();
     if (!userData) {
-        alert('Пожалуйста, сначала авторизуйтесь!');
         return;
     }
-
     if (popupType === 'phone') {
         document.getElementById('old-phone-input').value = userData.phone;
         document.getElementById('new-phone-input').value = '';
@@ -431,23 +536,15 @@ function closePopup(popupType) {
 function updatePhone() {
     const userData = getUserData();
     const newPhone = document.getElementById('new-phone-input').value.trim();
-    
     if (!newPhone) {
-        alert('Введите новый номер телефона!');
         return;
     }
-    
     if (newPhone === userData.phone) {
-        alert('Новый номер телефона не должен совпадать со старым!');
         return;
     }
-    
     userData.phone = newPhone;
     saveUserData(userData);
-    
     document.getElementById('profile-phone').textContent = newPhone;
-    
-    alert('Номер телефона успешно изменен!');
     closePopup('phonePopup');
 }
 
@@ -456,33 +553,21 @@ function updatePassword() {
     const oldPassword = document.getElementById('old-password-input').value;
     const newPassword = document.getElementById('new-password-input').value;
     const repeatPassword = document.getElementById('repeat-password-input').value;
-    
     if (oldPassword !== userData.password) {
-        alert('Старый пароль введен неверно!');
         return;
     }
-    
     if (!newPassword) {
-        alert('Введите новый пароль!');
         return;
     }
-    
     if (newPassword !== repeatPassword) {
-        alert('Новые пароли не совпадают!');
         return;
     }
-    
     if (newPassword === userData.password) {
-        alert('Новый пароль не должен совпадать со старым!');
         return;
     }
-    
     userData.password = newPassword;
     saveUserData(userData);
-    
     document.getElementById('profile-password').textContent = maskPassword(newPassword);
-    
-    alert('Пароль успешно изменен!');
     closePopup('passwordPopup');
 }
 
@@ -490,7 +575,6 @@ function maskPassword(password) {
     return '*'.repeat(password.length);
 }
 
-// Вспомогательные функции
 function getUserData() {
     return JSON.parse(localStorage.getItem('userData'));
 }
@@ -499,10 +583,8 @@ function saveUserData(userData) {
     localStorage.setItem('userData', JSON.stringify(userData));
 }
 
-// Закрытие попапов по клику вне области
 document.addEventListener('DOMContentLoaded', function() {
     const popupOverlays = document.querySelectorAll('.popup-overlay');
-    
     popupOverlays.forEach(overlay => {
         overlay.addEventListener('click', function(e) {
             if (e.target === overlay) {

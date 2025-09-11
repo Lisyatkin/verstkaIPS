@@ -88,7 +88,7 @@ if (window.location.pathname.endsWith('profile.html')) {
     logoutBtn.className = 'logout-btn';
     logoutBtn.onclick = function() {
       localStorage.removeItem('userData');
-      window.location.reload();
+      window.location.href = 'firstpage_dontautoriz.html'; // Перенаправление
     };
     document.querySelector('.right-info').appendChild(logoutBtn);
   });

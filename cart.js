@@ -16,7 +16,7 @@ const Cart = (function() {
                     eventListenersAttached = true;
                 }
                 this.render();
-                this.updateCounter();
+                this.updateCounter(); // ДОБАВЛЕНО: обновляем счетчик при инициализации
                 this.updateBonuses();
                 this.updateProfileBonuses();
                 this.setupCartPopup();
@@ -118,7 +118,7 @@ const Cart = (function() {
 
                 this.saveCart();
                 this.render();
-                this.updateCounter();
+                this.updateCounter(); // ДОБАВЛЕНО: обновляем счетчик
                 this.updateBonuses();
                 this.updateProfileBonuses();
                 return true;
@@ -139,7 +139,7 @@ const Cart = (function() {
 
                 this.saveCart();
                 this.render();
-                this.updateCounter();
+                this.updateCounter(); // ДОБАВЛЕНО: обновляем счетчик
                 this.updateBonuses();
                 this.updateProfileBonuses();
                 return true;
@@ -151,7 +151,7 @@ const Cart = (function() {
                     this.items.splice(itemIndex, 1);
                     this.saveCart();
                     this.render();
-                    this.updateCounter();
+                    this.updateCounter(); // ДОБАВЛЕНО: обновляем счетчик
                     this.updateBonuses();
                     this.updateProfileBonuses();
                     return true;
@@ -159,17 +159,13 @@ const Cart = (function() {
                 return false;
             },
 
-            clearCart(showAlert = false) {
+            clearCart() {
                 this.items = [];
                 this.clearStorage();
                 this.render();
-                this.updateCounter();
+                this.updateCounter(); // ДОБАВЛЕНО: обновляем счетчик
                 this.updateBonuses();
                 this.updateProfileBonuses();
-                
-                if (showAlert) {
-                    alert('Корзина очищена');
-                }
                 return true;
             },
 
@@ -199,6 +195,57 @@ const Cart = (function() {
                 if (profileBonusElement) {
                     profileBonusElement.textContent = this.currentBonuses;
                 }
+                return this;
+            },
+
+            // ДОБАВЛЕН НОВЫЙ МЕТОД: Обновление иконки корзины
+            updateCartIcon(itemCount) {
+                const cartIcon = document.querySelector('.page-header__nav-link_image.cart img');
+                if (!cartIcon) return;
+                
+                let iconSrc = 'assets/images/cart.svg';
+                
+                if (itemCount === 1) {
+                    iconSrc = 'assets/images/cart-1-item.svg';
+                } else if (itemCount > 1 && itemCount <= 5) {
+                    iconSrc = 'assets/images/cart-2-5-items.svg';
+                } else if (itemCount > 5) {
+                    iconSrc = 'assets/images/cart-full.svg';
+                }
+                
+                // Проверяем, нужно ли обновлять иконку
+                const currentSrc = cartIcon.src.split('/').pop();
+                const newSrc = iconSrc.split('/').pop();
+                
+                if (currentSrc !== newSrc) {
+                    cartIcon.src = iconSrc;
+                    // Добавляем анимацию
+                    cartIcon.classList.add('cart-icon-update');
+                    setTimeout(() => {
+                        cartIcon.classList.remove('cart-icon-update');
+                    }, 300);
+                }
+            },
+
+            // ОБНОВЛЕННЫЙ МЕТОД: Теперь также обновляет иконку
+            updateCounter() {
+                const counter = document.querySelector('.cart-counter');
+                const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
+                
+                if (counter) {
+                    counter.textContent = totalItems;
+                    
+                    // Показываем/скрываем счетчик
+                    if (totalItems > 0) {
+                        counter.style.display = 'flex';
+                    } else {
+                        counter.style.display = 'none';
+                    }
+                }
+                
+                // ДОБАВЛЕНО: Обновляем иконку корзины
+                this.updateCartIcon(totalItems);
+                
                 return this;
             },
 
@@ -264,14 +311,6 @@ const Cart = (function() {
                 totalElement.textContent = `Итого: ${finalTotal.toFixed(2)} ₽`;
             },
 
-            updateCounter() {
-                const counter = document.querySelector('.cart-counter');
-                if (counter) {
-                    counter.textContent = this.items.reduce((sum, item) => sum + item.quantity, 0);
-                }
-                return this;
-            },
-
             handleItemClick(e) {
                 const itemElement = e.target.closest('.basket-item');
                 if (!itemElement) return;
@@ -301,7 +340,6 @@ const Cart = (function() {
                         };
                         
                         if (this.add(product)) {
-                            alert('Товар добавлен в корзину!');
                             popup.style.display = 'none';
                             document.body.style.overflow = 'auto';
                         }
@@ -310,7 +348,6 @@ const Cart = (function() {
                 
                 if (e.target.classList.contains('pay-button')) {
                     if (this.items.length === 0) {
-                        alert('Корзина пуста!');
                         return;
                     }
                     
@@ -327,24 +364,25 @@ const Cart = (function() {
                     const finalTotal = total - bonusesToUse;
                     const newTotalBonuses = this.currentBonuses - bonusesToUse + bonusesToAdd;
                     
-                    if (confirm(
-                        `Оформить заказ?\n` +
-                        `Сумма: ${total.toFixed(2)} ₽\n` +
-                        `Списывается бонусов: ${bonusesToUse}\n` +
-                        `Итого к оплате: ${finalTotal.toFixed(2)} ₽\n` +
-                        `Будет начислено: ${bonusesToAdd} бонусов`
-                    )) {
-                        this.currentBonuses = newTotalBonuses;
-                        this.saveBonuses();
-                        
-                        alert(`Заказ успешно оформлен!\nНачислено бонусов: ${bonusesToAdd}, списано: ${bonusesToUse}`);
-                        this.clearCart();
-                        this.updateProfileBonuses();
-                        
-                        this.dispatchBonusesUpdate();
-                        
-                        setTimeout(() => location.reload(), 300);
-                    }
+                    this.currentBonuses = newTotalBonuses;
+                    this.saveBonuses();
+                    
+                    const orderData = {
+                        items: this.items,
+                        total: total,
+                        bonusesUsed: bonusesToUse,
+                        finalTotal: finalTotal,
+                        bonusesAdded: bonusesToAdd,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('currentOrder', JSON.stringify(orderData));
+                    
+                    this.clearCart();
+                    this.updateProfileBonuses();
+                    this.dispatchBonusesUpdate();
+                    
+                    window.location.href = 'pay.html';
                 }
             },
 
@@ -380,7 +418,6 @@ const Cart = (function() {
                 });
             },
 
-            // Функции для управления попапом корзины
             setupCartPopup() {
                 const cartIcon = document.querySelector('.page-header__nav-link_image.cart');
                 const cartPopup = document.querySelector('.cart-popup');
@@ -388,7 +425,6 @@ const Cart = (function() {
                 const closeCartBtn = document.querySelector('.close-cart-popup');
                 const clearCartBtn = document.querySelector('.clear-cart-button');
                 
-                // Открытие попапа при клике на иконку корзины
                 if (cartIcon) {
                     cartIcon.addEventListener('click', (e) => {
                         e.preventDefault();
@@ -396,7 +432,6 @@ const Cart = (function() {
                     });
                 }
                 
-                // Закрытие попапа
                 if (closeCartBtn) {
                     closeCartBtn.addEventListener('click', () => {
                         this.closeCartPopup();
@@ -409,17 +444,13 @@ const Cart = (function() {
                     });
                 }
                 
-                // Очистка корзины
                 if (clearCartBtn) {
                     clearCartBtn.addEventListener('click', () => {
-                        if (confirm('Вы уверены, что хотите очистить корзину?')) {
-                            this.clearCart(true);
-                            this.closeCartPopup();
-                        }
+                        this.clearCart();
+                        this.closeCartPopup();
                     });
                 }
                 
-                // Закрытие по ESC
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && cartPopup.style.display === 'block') {
                         this.closeCartPopup();
